@@ -1,0 +1,13 @@
+# Fiscal year-end closing
+
+Year-end uses the configured fiscal year and the approved close session for its final accounting period. It supports a non-calendar year such as July 1 to June 30. Earlier periods must be closed or locked, and earlier nominal balances must be cleared. The Owner publishes the retained earnings mapping on an active, non-contra posting equity account. Approval and final execution use the same fresh readiness checks as ordinary close, with year-end prerequisites added.
+
+The year-end service offsets each nonzero nominal account at the inclusive fiscal cutoff and transfers the net result to retained earnings. For USD 700 credit in revenue and USD 250 debit in expenses, the closing journal debits revenue 700, credits expense 250 and credits retained earnings 450. A net loss debits retained earnings. If every nominal balance is zero, completion records the evidence without generating an empty journal. A zero net result with nonzero individual accounts still produces a balanced close journal.
+
+The journal uses the typed `FinancialClose.YearEnd` source and the shared Posting Engine. The company lock covers readiness, journal generation, final period close and the immutable year-end record. Uniqueness of fiscal year, request key and journal link plus retry fingerprinting prevent duplicate closing. A failure rolls back the whole close. The retained report contains the definition ID, session, actor, reason, net nominal result transferred, journal ID and generated lines.
+
+Income reports exclude typed year-end entries and preserve the original fiscal performance. The Balance Sheet reads the actual retained earnings posting and the remaining nominal balances, so a transferred result is represented once. Equity displays the transfer as an internal memo. The next fiscal period inherits permanent balances from posted history, without generating another opening conversion journal. Historical manual journals cannot be identified as closing entries from their descriptions.
+
+Once a fiscal year is finalized, accounting dates through that cutoff cannot receive new postings or reopen closed periods. Terminal Locked periods retain their existing behavior. Corrections use eligible later-period journals with their own approval, source and audit history. The original fiscal close, its definition and historical financial lines remain available. The phase has no restatement or formal reopened-year workflow.
+
+Under the company path, `POST /financial-close/years/{yearId}/close` takes the approved session and version, idempotency key, reason and explicit backdate flag. `GET /financial-close/years` lists completed records. The [release verification](RELEASE_VERIFICATION.md) records build, test and migration evidence.

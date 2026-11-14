@@ -1,0 +1,13 @@
+**
+!global.json
+!RAQM.slnx
+!RAQM.Api/
+!RAQM.Api/**
+RAQM.Api/**/bin/
+RAQM.Api/**/obj/
+RAQM.Api/**/.env*
+RAQM.Api/**/*.pfx
+RAQM.Api/**/*.p12
+RAQM.Api/**/*.pem
+RAQM.Api/**/*.key
+RAQM.Api/**/*.password

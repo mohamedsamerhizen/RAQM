@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="590" viewBox="0 0 1000 590" role="img" aria-labelledby="title desc">
+<title id="title">Actual synthetic credit, journal, and period close</title><desc id="desc">Selected values from a PostgreSQL-backed HTTP test. Credit posted for 16.67, with matching debit and credit. Stock remaining is zero. Fiscal close returned 200 and the stored state is Closed.</desc>
+<rect width="1000" height="590" fill="#e8eee4"/>
+<text x="44" y="49" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#005c49">EXECUTED / HTTP + POSTGRESQL</text>
+<text x="43" y="115" font-size="58" font-family="Georgia, serif" font-weight="400" fill="#142831">From credit request to close</text>
+<path d="M44 139H955M44 242H955M44 307H955M44 376H955" stroke="#93aa9e" fill="none"/>
+<text x="45" y="185" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#005c49">CREDIT INPUT</text><text x="45" y="220" font-size="32" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">0.333334 sales units</text>
+<text x="382" y="185" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#005c49">HTTP RESULT</text><text x="382" y="220" font-size="32" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">Posted</text>
+<text x="670" y="185" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#005c49">LINKED JOURNAL</text><text x="670" y="220" font-size="32" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">Verified</text>
+<text x="45" y="280" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#005c49">JOURNAL ACCOUNT</text><text x="605" y="280" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#005c49">DEBIT</text><text x="791" y="280" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#005c49">CREDIT</text>
+<text x="45" y="350" font-size="33" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">Revenue</text><text x="599" y="350" font-size="32" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">16.67</text><text x="786" y="350" font-size="32" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">0.00</text><text x="45" y="414" font-size="33" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">Accounts receivable</text><text x="599" y="414" font-size="32" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">0.00</text><text x="786" y="414" font-size="32" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#142831">16.67</text>
+<rect x="0" y="447" width="1000" height="143" fill="#142831"/>
+<text x="46" y="495" font-size="24" font-family="Consolas, monospace" font-weight="700" fill="#b4f2d5">AFTER EXACT SHIPMENT</text>
+<text x="45" y="546" font-size="30" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="650" fill="#f7f5ed">Remaining 0  /  COGS $50  /  Inventory $10</text>
+<text x="706" y="495" font-size="27" font-family="system-ui, Segoe UI, Arial, sans-serif" font-weight="700" fill="#b4f2d5">HTTP 200 · Closed</text>
+</svg>

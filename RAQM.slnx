@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="RAQM.Api/RAQM.Api.csproj" />
+  <Project Path="RAQM.Tests/RAQM.Tests.csproj" />
+</Solution>

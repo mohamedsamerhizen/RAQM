@@ -1,0 +1,48 @@
+name: raqm-phase0
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: raqm
+      POSTGRES_USER: raqm
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U raqm -d raqm"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [backend]
+    restart: unless-stopped
+  migrate:
+    build: .
+    image: raqm-phase0-api:local
+    command: ["--migrate"]
+    environment: &api-environment
+      ASPNETCORE_ENVIRONMENT: Development
+      AllowedHosts: localhost;127.0.0.1
+      ConnectionStrings__Database: Host=postgres;Database=raqm;Username=raqm;Password=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      Auth__SigningKey: ${JWT_SIGNING_KEY:?Set JWT_SIGNING_KEY}
+      Auth__OnboardingKey: ${ONBOARDING_KEY:?Set ONBOARDING_KEY}
+    depends_on:
+      postgres: {condition: service_healthy}
+    networks: [backend]
+    restart: "no"
+    healthcheck: {disable: true}
+  api:
+    build: .
+    image: raqm-phase0-api:local
+    environment: *api-environment
+    ports: ["127.0.0.1:5097:8080"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    networks: [backend, api-access]
+    restart: unless-stopped
+networks:
+  api-access:
+    driver: bridge
+  backend:
+    internal: true
+volumes:
+  postgres-data:

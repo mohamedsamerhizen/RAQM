@@ -1,0 +1,7 @@
+# Machine API security and access
+
+Machine requests use Authorization with scheme RAQM-Key. The value contains a public key identifier and 32 cryptographically random bytes. Issuance returns the credential once. PostgreSQL stores the SHA-256 digest of the random bytes, and authentication uses constant-time digest comparison for a known key. Credentials last 1–90 days. Rotation permits up to 60 minutes of overlap, with at most two current keys. The owner can revoke a key. Authentication records throttled last-use metadata.
+
+The dedicated authentication scheme applies only to machine endpoints. It grants no existing JWT or owner permissions. The route company and organization must match the authenticated key. Scopes are invoices.read, suppliers.read, master.import, reports.read and webhooks.receive. Webhook receipt authorizes subscription event delivery only.
+
+Machine ingress has a socket-address quota before key authentication and a process-local concurrency limit. A separate application partition uses the authenticated app identity, so rotating a key does not reset the app quota. Rejections use HTTP 429 and Retry-After. Request bodies are limited, and list requests use existing pagination validation. Human authentication limits retain their previous contract. These limits are per process. A reverse proxy may need its own trusted address and global quota policy. [ASP.NET Core rate limiting](https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit?view=aspnetcore-10.0)
